@@ -43,26 +43,6 @@ jobs:
             ${{ runner.os }}-test-${{ env.cache-name }}-
             ${{ runner.os }}-test-
             ${{ runner.os }}-
-      - uses: actions/cache@v1
-        env:
-          cache-name: cache-artifacts
-        with:
-          path: traced_runtests.jl
-          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('tracecompile.jl') }}
-          restore-keys: |
-            ${{ runner.os }}-test-${{ env.cache-name }}-
-            ${{ runner.os }}-test-
-            ${{ runner.os }}-
-      - uses: actions/cache@v1
-        env:
-          cache-name: cache-artifacts
-        with:
-          path: traced_nb.jl
-          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('nb.jl') }}
-          restore-keys: |
-            ${{ runner.os }}-test-${{ env.cache-name }}-
-            ${{ runner.os }}-test-
-            ${{ runner.os }}-
       - name: Install Packages in default env
         run: |
           julia setup.jl
