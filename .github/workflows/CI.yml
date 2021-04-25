@@ -1,0 +1,90 @@
+name: CI
+on: 
+  push:
+    tags:
+      - "v*"
+    branches:
+      - "main"
+jobs:
+  test:
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - '1.6'
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          - windows-latest
+        arch:
+          - x64
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Install dependencies for Python
+        run: |
+          pip install jupyter jupytext 
+          pip install nbconvert ipykernel
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.version }}
+          arch: ${{ matrix.arch }}
+      - uses: actions/cache@v1
+        env:
+          cache-name: cache-artifacts
+        with:
+          path: ~/.julia/artifacts
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-test-
+            ${{ runner.os }}-
+      - uses: actions/cache@v1
+        env:
+          cache-name: cache-artifacts
+        with:
+          path: traced_runtests.jl
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('tracecompile.jl') }}
+          restore-keys: |
+            ${{ runner.os }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-test-
+            ${{ runner.os }}-
+      - uses: actions/cache@v1
+        env:
+          cache-name: cache-artifacts
+        with:
+          path: traced_nb.jl
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('nb.jl') }}
+          restore-keys: |
+            ${{ runner.os }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-test-
+            ${{ runner.os }}-
+      - name: Install Packages in default env
+        run: |
+          julia setup.jl
+      - name: Running make command
+        run: make
+      - name: Running make test command
+        run: make test
+      # Create Release
+      - name: Upload artifacts
+        uses: ncipollo/release-action@v1
+        if: contains(github.ref, 'refs/tags')
+        with:
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          artifacts: "sys*"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to tag named latest
+        uses: ncipollo/release-action@v1
+        if: github.ref == 'refs/heads/main'
+        with:
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          tag: latest
+          artifacts: "sys*"
+          token: ${{ secrets.GITHUB_TOKEN }}
