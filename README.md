@@ -1,5 +1,7 @@
 # sysimage_creator
 
+[![CI](https://github.com/terasakisatoshi/sysimage_creator/actions/workflows/CI.yml/badge.svg)](https://github.com/terasakisatoshi/sysimage_creator/actions/workflows/CI.yml)
+
 - This repository aims to provide scripts that create sysimage via PackageCompiler.jl .
 - It will reduce latency when working locally with packages that has a high startup time e.g. Plots.jl or StatsPlots.jl .
 
