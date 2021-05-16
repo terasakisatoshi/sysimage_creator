@@ -3,7 +3,7 @@
 all: instantiate build
 
 instantiate: Project.toml
-	rm -f Manifest.toml
+	-rm -f Manifest.toml
 	julia --project=@. -e 'using Pkg; Pkg.instantiate()'
 
 traced_runtests.jl traced_nb.jl: tracecompile.jl nb.jl
@@ -18,9 +18,9 @@ test:
 	julia --project=@. benchmark.jl
 
 clean:
-	rm -f tmp*
-	rm -f sys*
-	rm -f traced_nb.jl traced_runtests.jl
-	rm -f *.ipynb
-	rm -f Manifest.toml
-	rm -rf .ipynb_checkpoints
+	-rm -f tmp*
+	-rm -f sys*
+	-rm -f traced_nb.jl traced_runtests.jl
+	-rm -f *.ipynb
+	-rm -f Manifest.toml
+	-rm -rf .ipynb_checkpoints
