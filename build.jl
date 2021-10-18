@@ -2,7 +2,7 @@ using PackageCompiler
 using Libdl: dlext
 
 create_sysimage(
-    [:StatsPlots, :Plots, :DataFrames, :OhMyREPL], 
+    [:StatsPlots, :Plots, :DataFrames], 
     precompile_statements_file=[
         "traced_runtests.jl", 
         "traced_nb.jl"
