@@ -10,3 +10,5 @@ create_sysimage(
     sysimage_path="sys.$(dlext)",
     cpu_target = PackageCompiler.default_app_cpu_target()
 )
+
+@info "Done!"
