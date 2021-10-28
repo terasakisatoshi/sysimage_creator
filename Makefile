@@ -9,7 +9,7 @@ instantiate: Project.toml
 traced_runtests.jl traced_nb.jl: tracecompile.jl nb.jl
 	julia --project=@. --trace-compile=traced_runtests.jl tracecompile.jl
 	julia --project=@. installkernel.jl
-	jupytext --to ipynb --execute nb.jl
+	julia --project=@. executenb.jl
 
 build: traced_runtests.jl traced_nb.jl
 	julia --project=@. build.jl
