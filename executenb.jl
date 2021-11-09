@@ -1,3 +1,5 @@
+using Conda
+
 jupytext = Sys.which("jupytext")
 
 if isnothing(jupytext)
