@@ -7,7 +7,7 @@ create_sysimage(
         "traced_runtests.jl", 
         "traced_nb.jl"
     ],
-    sysimage_path="sys.$(dlext)",
+    sysimage_path=joinpath(@__DIR__, "sys.$(dlext)"),
     cpu_target = PackageCompiler.default_app_cpu_target()
 )
 
