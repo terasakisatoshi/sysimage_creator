@@ -10,6 +10,7 @@ traced_runtests.jl traced_nb.jl: tracecompile.jl nb.jl
 	julia --project=@. --trace-compile=traced_runtests.jl tracecompile.jl
 	julia --project=@. installkernel.jl
 	julia --project=@. executenb.jl
+	julia --project=@. removekernel.jl
 
 build: traced_runtests.jl traced_nb.jl
 	julia --project=@. build.jl
