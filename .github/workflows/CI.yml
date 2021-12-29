@@ -18,8 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - '1.6'
-          - '1.7'
+          - 1.6
+          - 1.7
         os:
           - ubuntu-latest
           - macOS-latest
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
+          python-version: 3.8
       - name: Install dependencies for Python
         run: |
           pip install jupyter jupytext 
