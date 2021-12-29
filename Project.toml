@@ -1,5 +1,5 @@
 authors = ["Satoshi Terasaki <terasakisatoshi.math@gmail.com>"]
-version = "0.3.1"
+version = "0.4.0"
 
 [deps]
 Clustering = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
