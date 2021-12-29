@@ -7,11 +7,11 @@
 #       extension: .jl
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.11.1
+#       jupytext_version: 1.13.4
 #   kernelspec:
-#     display_name: Julia-trace 1.6.0
+#     display_name: Julia-trace 1.7.1
 #     language: julia
-#     name: julia-trace-1.6
+#     name: julia-trace-1.7
 # ---
 
 # +
