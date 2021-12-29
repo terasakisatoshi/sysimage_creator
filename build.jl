@@ -1,5 +1,10 @@
 using PackageCompiler
-using Libdl: dlext
+using Libdl
+
+major = VERSION.major
+minor = VERSION.minor
+
+sysimage_path = joinpath(@__DIR__, "v$(major).$(minor)", "sys" * "." * Libdl.dlext)
 
 create_sysimage(
     [:StatsPlots, :Plots, :DataFrames], 
@@ -7,7 +12,7 @@ create_sysimage(
         "traced_runtests.jl", 
         "traced_nb.jl"
     ],
-    sysimage_path=joinpath(@__DIR__, "sys.$(dlext)"),
+    sysimage_path=sysimage_path,
     cpu_target = PackageCompiler.default_app_cpu_target()
 )
 

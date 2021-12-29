@@ -20,7 +20,7 @@ test:
 
 clean:
 	-rm -f tmp*
-	-rm -f sys*
+	julia -e 'rm(joinpath(pwd(), "v$$(VERSION.major).$$(VERSION.minor)"), recursive=true, force=true)'
 	-rm -f traced_nb.jl traced_runtests.jl
 	-rm -f *.ipynb
 	-rm -f Manifest.toml
