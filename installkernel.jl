@@ -8,7 +8,7 @@ major = VERSION.major
 minor = VERSION.minor
 
 sysimage_path = joinpath(@__DIR__, "v$(major).$(minor)", "sys" * "." * Libdl.dlext)
-mkpath(dirname(sysimage))
+mkpath(dirname(sysimage_path))
 
 installkernel(
     "Julia-sys",
