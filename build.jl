@@ -1,5 +1,5 @@
 using PackageCompiler
-using Libdl: dlext
+using Libdl
 
 major = VERSION.major
 minor = VERSION.minor
