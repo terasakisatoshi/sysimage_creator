@@ -4,7 +4,11 @@ using Libdl
 # This kernel will be removed via removekernel.jl
 installkernel("Julia-trace", "--project=@.", "--trace-compile=traced_nb.jl")
 
-sysimage = joinpath(@__DIR__, "sys" * "." * Libdl.dlext)
+major = VERSION.major
+minor = VERSION.minor
+
+sysimage = joinpath(@__DIR__, "v$(major).$(minor)", "sys" * "." * Libdl.dlext)
+mkpath(sysimage)
 
 installkernel(
     "Julia-sys",
