@@ -54,7 +54,7 @@ jobs:
         run: |
           julia setup.jl
       - name: Running make command
-        run: make
+        run: GKSwstype=100 make
       - name: Running make test command
         run: make test
       # Create Release
