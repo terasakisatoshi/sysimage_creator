@@ -18,5 +18,3 @@ using StatsPlots
 using Distributions
 
 plot(Laplace())
-
-

@@ -21,7 +21,7 @@ using StatsPlots
 using DataFrames
 # -
 
-1+1
+1 + 1
 
 plot(sin)
 plot!(cos)
@@ -33,11 +33,11 @@ y = []
 anim = @animate for θ in -π:0.1:π
     push!(x, cos(θ))
     push!(y, sin(θ))
-    plot(x, y, xlim=[-1,1], ylim=[-1,1], aspect_ratio=:equal)
+    plot(x, y, xlim=[-1, 1], ylim=[-1, 1], aspect_ratio=:equal)
 end
 
 gif(anim)
 # -
 
-mat = DataFrame(rand(10,10), :auto)
+mat = DataFrame(rand(10, 10), :auto)
 @df mat scatter(:x1, :x2)
