@@ -7,9 +7,9 @@ if Sys.islinux()
 end
 
 try
-	include(joinpath(pkgdir(Plots), "test", "runtests.jl"))
+    include(joinpath(pkgdir(Plots), "test", "runtests.jl"))
 catch e
-	@warn "runtests.jl for Plots failed with $(e)"
+    @warn "runtests.jl for Plots failed with $(e)"
 end
 include(joinpath(pkgdir(StatsPlots), "test", "runtests.jl"))
 ENV["CI"] = false
