@@ -12,6 +12,7 @@ create_sysimage(
         "traced_runtests.jl",
         "traced_nb.jl",
     ],
+    include_transitive_dependencies = false,
     sysimage_path=sysimage_path,
     cpu_target=PackageCompiler.default_app_cpu_target(),
 )
