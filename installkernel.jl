@@ -18,7 +18,7 @@ installkernel(
 nthreads = Sys.CPU_THREADS
 
 installkernel(
-    "julia-sys-$(nthreads)-threads",
+    "Julia-sys-$(nthreads)-threads",
     "--project=@.", "--sysimage=$(sysimage_path)",
     env=Dict(
         "JULIA_NUM_THREADS" => "$(nthreads)",
