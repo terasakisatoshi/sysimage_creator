@@ -1,8 +1,13 @@
+f(x) = sin(x)
+x = pi
+f(x)
+f（x）
+
 # sysimage_creator
 
 [![CI](https://github.com/terasakisatoshi/sysimage_creator/actions/workflows/CI.yml/badge.svg)](https://github.com/terasakisatoshi/sysimage_creator/actions/workflows/CI.yml)
 
-- This repository aims to provide scripts that create sysimage accelerate initialization of IJulia kernel.
+- This repository aims to provide scripts that create sysimage that accelerates initialization of IJulia kernel.
 - It also will reduce latency when working locally with packages that has a high startup time e.g. Plots.jl or StatsPlots.jl .
 
 # Usage: For 今北産業(TL;DR) users
@@ -93,7 +98,7 @@ julia> using IJulia; notebook(dir=pwd())
 
 ## Step 2: Create sysimage
 
-- Ah... also make sure you can use `$ make` command on your terminal.
+- Ah... also make sure you can use `$ make` command in your terminal.
 - Just run `make`. It will make sysimage named `sys.{DLEXT}`, where `DLEXT` is `dylib, dll or so`.
 
 ```
@@ -122,7 +127,7 @@ $ julia --project=@. benchmark.jl
 
 or just run `make test` :D.
 
-### Case 2: from jupyter 
+### Case 2: from jupyter
 
 - Open Jupyter Notebook as always:
 
@@ -130,7 +135,7 @@ or just run `make test` :D.
 $ jupyter notebook
 ```
 
-- Then you'll see New kernel for Julia named `Julia-sys 1.6.3`. 
+- Then you'll see New kernel for Julia named `Julia-sys 1.6.3`.
 
 ![](assets/jupyter_kernel_list.png)
 
@@ -145,7 +150,7 @@ $ cat ~/Library/Jupyter/kernels/julia-sys-1.6/kernel.json
     "-i",
     "--color=yes",
     "--project=@.",
-    "--sysimage=sys", # <--- this `sys` is a name of sysimage 
+    "--sysimage=sys", # <--- this `sys` is a name of sysimage
     "/Users/<your-user-name>/.julia/packages/IJulia/e8kqU/src/kernel.jl",
     "{connection_file}"
   ],
