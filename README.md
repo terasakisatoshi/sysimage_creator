@@ -1,7 +1,3 @@
-f(x) = sin(x)
-x = pi
-f(x)
-f（x）
 
 # sysimage_creator
 
