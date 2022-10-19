@@ -7,7 +7,7 @@ minor = VERSION.minor
 sysimage_path = joinpath(@__DIR__, "v$(major).$(minor)", "sys" * "." * Libdl.dlext)
 
 create_sysimage(
-    [:StatsPlots, :Plots, :DataFrames],
+    [:StatsPlots, :Plots, :DataFrames, :Revise],
     precompile_statements_file=[
         "traced_runtests.jl",
         "traced_nb.jl",
