@@ -1,4 +1,6 @@
 using Test
+using PyCall: pyimport_conda
+using Conda
 
 @testset "benchmark" begin
     jupytext = Sys.which("jupytext")
@@ -6,7 +8,9 @@ using Test
     minor = VERSION.minor
 
     if isnothing(jupytext)
-        jupytext = normpath(Conda.SCRIPTDIR, "jupytext") # e.g. ~/.julia/conda/3/bin/jupytext
+        pyimport_conda("jupytext", "jupytext", "conda-forge")
+        ext = ifelse(Sys.iswindows(), ".exe", "")
+        jupytext = normpath(Conda.SCRIPTDIR, "jupytext$(ext)") # e.g. ~/.julia/conda/3/bin/jupytext
     end
 
     # Warm up Julia (to install Downloading artifact: MKL).

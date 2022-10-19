@@ -1,10 +1,13 @@
+using PyCall: pyimport_conda
 using Conda
 
 jupytext = Sys.which("jupytext")
 
 if isnothing(jupytext)
+    pyimport_conda("jupytext", "jupytext", "conda-forge")
     @info "try to use jupytext via Conda.jl"
-    jupytext = normpath(Conda.SCRIPTDIR, "jupytext") # e.g. ~/.julia/conda/3/bin/jupytext
+    ext = ifelse(Sys.iswindows(), ".exe", "")
+    jupytext = normpath(Conda.SCRIPTDIR, "jupytext$(ext)") # e.g. ~/.julia/conda/3/bin/jupytext
     if !isfile(jupytext)
         msg = """
         Unable to find `jupytext` command. Try the following instructions:
