@@ -1,9 +1,12 @@
 using IJulia: kerneldir
 
+kernelname = "julia-trace-$(VERSION.major).$(VERSION.minor)"
+@info "removing kernel" kernelname
+
 rm(
     joinpath(
         kerneldir(),
-        "julia-trace-$(VERSION.major).$(VERSION.minor)",
+        kernelname,
     ),
     force=true,
     recursive=true,
