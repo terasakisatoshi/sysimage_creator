@@ -25,7 +25,7 @@ Then open your jupyter notebook and select a kernel named `Julia-sys 1.6.3`
 - Let's install `jupyter` (or `jupyterlab` instead) and `jupytext` via:
 ```console
 $ pip install jupyter jupytext
-$ pip install nbconvert ipykernel # I'm not sure, but you may need on Windows.
+$ pip install nbconvert ipykernel cython # I'm not sure, but you will need on Windows.
 ```
 
 - After that, let's moving on to Step2!!!
@@ -60,7 +60,7 @@ julia> using Conda; Conda.add(["jupyter", "jupytext"], channel="conda-forge")
 
 - Tips: you don't have to copy code above line by line. Copy the whole 3 lines. Don't hesitate to include prompt `julia>`. Then just do paste to your julia REPL.
 - Tips: Setting `ENV["PYTHON"]=""; ENV["JUPYTER"]=""` makes julia select Python provided via [Conad.jl](https://github.com/JuliaPy/Conda.jl). Conda.jl uses the miniconda Python environment, which only includes conda and its dependencies. If you have LITTLE experience with Python, just follow the instructions above is fine.
-- Tips: Ah, you've remembered you can use Python and Jupyter from your terminal e.g.
+- Tips: Ah, you've remembered you can use Python and Jupyter from your termina? e.g.
 
 ```console
 $ python
@@ -110,9 +110,9 @@ sys.dylib # e.g. macOS users
 
 ### Case 1: from terminal
 
-- You can feel how much time we can reduce latency when we use our sysimage:
+- You can feel how much time we can reduce the latency of loading Julia packages when we use our sysimage:
 
-```
+```console
 $ cat benchmark.jl
 # use standard julia
 @time run(`jupytext --to ipynb --execute testout_naive.jl`)
@@ -127,7 +127,7 @@ or just run `make test` :D.
 
 - Open Jupyter Notebook as always:
 
-```
+```console
 $ jupyter notebook
 ```
 
@@ -164,4 +164,3 @@ $ cat ~/Library/Jupyter/kernels/julia-sys-1.6/kernel.json
 - Here is a result of running `testout_naive.jl` using standard sysimage, which is so slow:
 
 ![](assets/testout_naive.png)
-
