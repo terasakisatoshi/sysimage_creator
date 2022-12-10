@@ -1,5 +1,11 @@
 .PHONY: all instantiate trace build test clean
 
+OS:=$(shell uname -s)
+
+ifeq ($(CI) $(OS),true Linux)
+	JULIA_PREFIX=xvfb-run
+endif
+
 all: instantiate build
 
 instantiate: Project.toml
@@ -13,10 +19,10 @@ traced_runtests.jl traced_nb.jl: tracecompile.jl nb.jl
 	julia --project=@. removekernel.jl
 
 build: traced_runtests.jl traced_nb.jl
-	julia --project=@. build.jl
+	$(JULIA_PREFIX) julia --project=@. build.jl
 
 test:
-	julia --project=@. benchmark.jl
+	$(JULIA_PREFIX) julia --project=@. benchmark.jl
 
 clean:
 	-rm -f tmp*
