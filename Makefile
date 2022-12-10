@@ -8,7 +8,7 @@ ifeq ($(CI) $(OS),true Linux)
 	JULIA_PREFIX=xvfb-run
 endif
 
-JULIA_COMMAND=$(JULIA_PREFIX) julia --project=@.
+JULIA_COMMAND ?= $(JULIA_PREFIX) julia --project=@.
 
 all: instantiate build
 
