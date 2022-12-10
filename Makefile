@@ -2,31 +2,35 @@
 
 OS:=$(shell uname -s)
 
+# https://github.com/julia-actions/julia-runtest
 ifeq ($(CI) $(OS),true Linux)
+	# run `apt-get install -y xvfb xauth` in advance
 	JULIA_PREFIX=xvfb-run
 endif
+
+JULIA_COMMAND=$(JULIA_PREFIX) julia --project=@.
 
 all: instantiate build
 
 instantiate: Project.toml
 	-rm -f Manifest.toml
-	julia --project=@. -e 'using Pkg; Pkg.instantiate()'
+	$(JULIA_COMMAND) -e 'using Pkg; Pkg.instantiate()'
 
 traced_runtests.jl traced_nb.jl: tracecompile.jl nb.jl
-	julia --project=@. --trace-compile=traced_runtests.jl tracecompile.jl
-	julia --project=@. installkernel.jl
-	julia --project=@. executenb.jl
-	julia --project=@. removekernel.jl
+	$(JULIA_COMMAND) --trace-compile=traced_runtests.jl tracecompile.jl
+	$(JULIA_COMMAND) installkernel.jl
+	$(JULIA_COMMAND) executenb.jl
+	$(JULIA_COMMAND) removekernel.jl
 
 build: traced_runtests.jl traced_nb.jl
-	$(JULIA_PREFIX) julia --project=@. build.jl
+	$(JULIA_COMMAND) build.jl
 
 test:
-	$(JULIA_PREFIX) julia --project=@. benchmark.jl
+	$(JULIA_COMMAND) benchmark.jl
 
 clean:
 	-rm -f tmp*
-	julia -e 'rm(joinpath(pwd(), "v$$(VERSION.major).$$(VERSION.minor)"), recursive=true, force=true)'
+	$(JULIA_COMMAND) -e 'rm(joinpath(pwd(), "v$$(VERSION.major).$$(VERSION.minor)"), recursive=true, force=true)'
 	-rm -f traced_nb.jl traced_runtests.jl
 	-rm -f *.ipynb
 	-rm -f Manifest.toml
