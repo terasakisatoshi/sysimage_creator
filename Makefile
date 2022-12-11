@@ -14,6 +14,7 @@ all: instantiate build
 
 instantiate: Project.toml
 	-rm -f Manifest.toml
+	-rm -rf .CondaPkg
 	$(JULIA_COMMAND) -e 'using Pkg; Pkg.instantiate()'
 
 traced_runtests.jl traced_nb.jl: tracecompile.jl nb.jl
