@@ -58,8 +58,6 @@ jobs:
           julia setup.jl
       - name: Running make command
         run: make
-        env:
-          LIBGL_ALWAYS_INDIRECT: 1
       - name: Running make test command
         run: make test
       # Create Release
