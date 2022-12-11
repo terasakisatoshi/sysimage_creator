@@ -8,7 +8,7 @@ if isnothing(jupytext)
     pyimport_conda("nbconvert", "nbconvert", "conda-forge")
     pyimport_conda("ipykernel", "ipykernel", "conda-forge")
     pyimport_conda("jupytext", "jupytext", "conda-forge")
-    
+
     @info "try to use jupytext via Conda.jl"
     ext = ifelse(Sys.iswindows(), ".exe", "")
     jupytext = normpath(Conda.SCRIPTDIR, "jupytext$(ext)") # e.g. ~/.julia/conda/3/bin/jupytext
