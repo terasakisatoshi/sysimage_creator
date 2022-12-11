@@ -13,7 +13,7 @@ JULIA_COMMAND ?= $(JULIA_PREFIX) julia --project=@.
 all: instantiate build
 
 instantiate: Project.toml
-	-rm -f Manifest.toml
+	-rm -f Manifest.toml LocalPreferences.toml
 	-rm -rf .CondaPkg
 	$(JULIA_COMMAND) -e 'using Pkg; Pkg.instantiate()'
 
