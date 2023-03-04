@@ -12,6 +12,7 @@ DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
 FilePathsBase = "48062228-2e41-5def-b9a4-89aafe57970f"
+FreeType = "b38be410-82b0-50bf-ab77-7b57e271db43"
 GR = "28b8d3ca-fb5f-59d9-8090-bfdbd6d07a71"
 GeometryBasics = "5c1252a2-5f33-56bf-86c9-59e7332b4326"
 GeometryTypes = "4d00f742-c7ba-57c2-abde-4428a4b178cb"
@@ -56,4 +57,3 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Pkg", "Test"]
-
