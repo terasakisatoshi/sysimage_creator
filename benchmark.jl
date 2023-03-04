@@ -15,16 +15,18 @@ using Conda
 
     # Warm up Julia (to install Downloading artifact: MKL).
     @elapsed run(
-        `$jupytext --execute --to ipynb --set-kernel julia-$(major).$(minor) testout_naive.jl`,
+        `$jupytext --execute --to ipynb --set-kernel julia-$(major).$(minor) test/testout_naive.jl`,
     )
 
     t_naive = @elapsed run(
-        `$jupytext --execute --to ipynb --set-kernel julia-$(major).$(minor) testout_naive.jl`,
+        `$jupytext --execute --to ipynb --set-kernel julia-$(major).$(minor) test/testout_naive.jl`,
     )
     t_sys = @elapsed run(
-        `$jupytext --execute --to ipynb --set-kernel julia-sys-$(major).$(minor) testout_sys.jl`,
+        `$jupytext --execute --to ipynb --set-kernel julia-sys-$(major).$(minor) test/testout_sys.jl`,
     )
-    @show t_naive
-    @show t_sys
-    @test t_naive > t_sys
+    @show t_naive t_sys
+    r = @test t_naive > t_sys
+    if r.value
+        @info "We were able to run the sample code $(t_naive/t_sys) times faster using our customized sysimage than using the default sysimage"
+    end
 end
